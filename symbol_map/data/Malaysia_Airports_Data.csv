@@ -1,4 +1,4 @@
-id,ident,type,name,latitude_deg,longitude_deg,elevation_ft,continent,iso_country,iso_region,municipality,total passengers handled by airport (exclude transit passenger),total commercial aircraft movements handled by airport
+id,ident,type,name,latitude_deg,longitude_deg,elevation_ft,continent,iso_country,iso_region,municipality,total_passengers_handled,total_commercial_aircraft_movements_handled
 26874,WMKK,large_airport,Kuala Lumpur International Airport 1 & 2,2.745579958,101.7099991,69,AS,MY,MY-14,KUALA LUMPUR,"47,184,548","319,054"
 26878,WMKP,medium_airport,Penang International Airport,5.297140121,100.2770004,11,AS,MY,MY-07,PENANG,"6,780,019","59,578"
 26875,WMKL,medium_airport,Langkawi International Airport,6.329730034,99.72869873,29,AS,MY,MY-02,LANGKAWI,"2,501,794","19,374"
