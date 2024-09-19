@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 750,
-  "height": 350,
+  "width": 800,
+  "height": 450,
   "title": "Passenger and Aircraft Movements Handled By Airports in Malaysia 2023",
   "projection": {"type": "mercator"},
   "layer": [
