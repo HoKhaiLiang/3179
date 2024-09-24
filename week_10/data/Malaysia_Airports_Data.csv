@@ -1,5 +1,5 @@
 id,ident,type,name,latitude,longitude,elevation_ft,continent,iso_country,iso_region,municipality,total_passengers_handled,total_commercial_aircraft_movements_handled
-26874,WMKK,large_airport,Kuala Lumpur International Airport 1 & 2,2.745579958,101.7099991,69,AS,MY,MY-14,KUALA LUMPUR,47184548 ,319054 
+26874,WMKK,large_airport,Kuala Lumpur International Airport,2.745579958,101.7099991,69,AS,MY,MY-14,KUALA LUMPUR,47184548 ,319054 
 26878,WMKP,medium_airport,Penang International Airport,5.297140121,100.2770004,11,AS,MY,MY-07,PENANG,6780019 ,59578 
 26875,WMKL,medium_airport,Langkawi International Airport,6.329730034,99.72869873,29,AS,MY,MY-02,LANGKAWI,2501794 ,19374 
 26814,WBKK,medium_airport,Kota Kinabalu International Airport,5.937210083,116.0510025,10,AS,MY,MY-12,KOTA KINABALU,7042171 ,58323 
