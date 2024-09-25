@@ -15,7 +15,10 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/js/graticules_5_malaysia_brunei.topojson",
-        "format": {"type": "topojson", "feature": "ne_10m_admin_1_states_provinces"}
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_admin_1_states_provinces"
+        }
       },
       "mark": {"type": "geoshape", "fill": "#e6dcbe", "stroke": "#b9b9aa"}
     },
@@ -63,7 +66,7 @@
           {
             "field": "total_commercial_aircraft_movements_handled",
             "type": "quantitative",
-            "title": "Aircraft Movements",
+            "title": "Aircraft Movements Handled",
             "format": ","
           }
         ]
