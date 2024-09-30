@@ -1,9 +1,43 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 450,
+  "width": 1200,
+  "height": 600,
   "title": "Passenger and Aircraft Movements Handled By Airports in Malaysia 2023",
   "projection": {"type": "mercator"},
+  "params": [
+    {
+      "name": "Total_Passengers_Selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Less than 100k",
+          "100k - 1.0M",
+          "1.0M - 10M",
+          "10M and above"
+        ],
+        "labels": [
+          "Show All",
+          "Less than 100k",
+          "100k - 1.0M",
+          "1.0M - 10M",
+          "10M and above"
+        ],
+        "name": "Total Passengers Handled: "
+      }
+    },
+    {
+      "name": "Total_Flights_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 60000,
+        "step": 1000,
+        "name": " Minimum Aircraft Movements Handled: "
+      }
+    }
+  ],
   "layer": [
     {
       "data": {
@@ -25,7 +59,10 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/js/graticules_5_malaysia_brunei.topojson",
-        "format": {"type": "topojson", "feature": "ne_110m_graticules_1"}
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_graticules_1"
+        }
       },
       "mark": {"type": "geoshape", "fill": null, "stroke": "#c3d2dc"}
     },
@@ -36,9 +73,18 @@
       "transform": [
         {
           "filter": "datum.total_passengers_handled > 0 && datum.total_commercial_aircraft_movements_handled > 0"
+        },
+        {
+          "filter": "Total_Passengers_Selection == null || (Total_Passengers_Selection == 'Less than 100k' && datum.total_passengers_handled < 100000) || (Total_Passengers_Selection == '100k - 1.0M' && datum.total_passengers_handled >= 100000 && datum.total_passengers_handled < 1000000) || (Total_Passengers_Selection == '1.0M - 10M' && datum.total_passengers_handled >= 1000000 && datum.total_passengers_handled < 10000000) || (Total_Passengers_Selection == '10M and above' && datum.total_passengers_handled >= 10000000)"
+        },
+        {
+          "filter": "datum.total_commercial_aircraft_movements_handled > Total_Flights_Above"
         }
       ],
-      "mark": {"type": "circle", "tooltip": {"content": "data"}},
+      "mark": {
+        "type": "circle",
+        "tooltip": {"content": "data"}
+      },
       "encoding": {
         "longitude": {"field": "longitude", "type": "quantitative"},
         "latitude": {"field": "latitude", "type": "quantitative"},
@@ -46,16 +92,22 @@
           "field": "total_passengers_handled",
           "type": "quantitative",
           "title": "Total Passengers Handled",
-          "scale": {"domain": [100000,1000000,10000000], 
-          "range": [50, 150, 300, 700],
-          "type":"threshold"},
-           "legend": {"format": ".2s"}
+          "scale": {
+            "domain": [100000, 1000000, 10000000],
+            "range": [50, 150, 300, 700],
+            "type": "threshold"
+          },
+          "legend": {"format": ".2s"}
         },
         "color": {
           "field": "total_commercial_aircraft_movements_handled",
           "type": "quantitative",
           "title": "Aircraft Movements Handled",
-          "scale": {"domain": [500, 320000], "scheme": "reds","type":"sqrt"},
+          "scale": {
+            "domain": [500, 320000],
+            "scheme": "reds",
+            "type": "sqrt"
+          },
           "legend": {"format": ".2s"}
         },
         "tooltip": [
@@ -75,7 +127,54 @@
           }
         ]
       }
+    },
+    {
+  "data": {
+    "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.total_passengers_handled > 0 && datum.total_commercial_aircraft_movements_handled > 0"
+    },
+    {
+      "filter": "Total_Passengers_Selection == null || (Total_Passengers_Selection == 'Less than 100k' && datum.total_passengers_handled < 100000) || (Total_Passengers_Selection == '100k - 1.0M' && datum.total_passengers_handled >= 100000 && datum.total_passengers_handled < 1000000) || (Total_Passengers_Selection == '1.0M - 10M' && datum.total_passengers_handled >= 1000000 && datum.total_passengers_handled < 10000000) || (Total_Passengers_Selection == '10M and above' && datum.total_passengers_handled >= 10000000)"
+    },
+    {
+      "filter": "datum.total_commercial_aircraft_movements_handled > Total_Flights_Above"
     }
+  ],
+  "mark": {
+    "type": "text",
+    "align": "left",
+    "baseline": "middle",
+    "dx": 5,
+    "fontSize": 10,
+    "fontStyle": "italic"
+  },
+  "encoding": {
+    "longitude": {"field": "longitude", "type": "quantitative"},
+    "latitude": {"field": "latitude", "type": "quantitative"},
+    "text": {"field": "name", "type": "nominal"},
+    "color": {"value": "black"},
+    "tooltip": [
+      {"field": "name", "type": "nominal", "title": "Airport Name"},
+      {"field": "municipality", "type": "nominal", "title": "Municipality"},
+      {
+        "field": "total_passengers_handled",
+        "type": "quantitative",
+        "title": "Passengers Handled",
+        "format": ","
+      },
+      {
+        "field": "total_commercial_aircraft_movements_handled",
+        "type": "quantitative",
+        "title": "Aircraft Movements Handled",
+        "format": ","
+      }
+    ]
+  }
+}
+
   ],
   "config": {}
 }
