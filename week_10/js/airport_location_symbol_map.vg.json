@@ -46,13 +46,17 @@
           "field": "total_passengers_handled",
           "type": "quantitative",
           "title": "Total Passengers Handled",
-          "scale": {"domain": [1, 50000000], "range": [20, 4000]}
+          "scale": {"domain": [100000,1000000,10000000], 
+          "range": [50, 150, 300, 700],
+          "type":"threshold"},
+           "legend": {"format": ".2s"}
         },
         "color": {
           "field": "total_commercial_aircraft_movements_handled",
           "type": "quantitative",
           "title": "Aircraft Movements Handled",
-          "scale": {"domain": [500, 320000], "scheme": "reds"}
+          "scale": {"domain": [500, 320000], "scheme": "reds","type":"sqrt"},
+          "legend": {"format": ".2s"}
         },
         "tooltip": [
           {"field": "name", "type": "nominal", "title": "Airport Name"},
