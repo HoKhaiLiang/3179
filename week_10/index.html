@@ -51,13 +51,13 @@
   </div> <!-- end page -->
 
   <script type="text/javascript">
-    var vis1 = "./js/airport_location_symbol_map.vg.json"; <!-- Graph path -->
+  var vis1 = "./js/airport_location_symbol_map.vg.json"; <!-- Graph path -->
 
-    // Embed the airport location symbol map
-    vegaEmbed('#airportMap', vis1, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-  </script>
+  // Embed the airport location symbol map
+  vegaEmbed('#vis1', vis1, { "actions": false }).then(function (result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+</script>
 
 </body>
 
