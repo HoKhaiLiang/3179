@@ -35,41 +35,13 @@
     </div>
     <!-- end pure grid group -->
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-2">
-        <div class="description description-left">
-          <h2>Two Columns Layout</h2>
-          <p>The first column contains text and the second column contains a visualisation.</p>
-        </div>
-      </div>
-      <div class="pure-u-1-2">
-        <div id="vis1" class="vis-container"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
+  
 
-    <!-- pure grid group -->
-    <div class="pure-g">
-      <div class="pure-u-1-3">
-        <div class="description description-left">
-          <h2>Three Equal Columns</h2>
-          <p>Using all three columns without merging.</p>
-        </div>
-      </div>
-      <div class="pure-u-1-3">
-        <div id="vis4" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-3" style="width: 31.5%;">
-        <div id="vis3" class="vis-container" style="margin-left: 15px;"></div>
-      </div>
-    </div>
-    <!-- end pure grid group -->
-
+    <div class="page">
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-2-3">
-        <div id="vis2" class="vis-container"></div>
+        <div id="airportMap" class="vis-container"></div> <!-- Graph container on the left -->
       </div>
       <div class="pure-u-1-3">
         <div class="description description-right">
@@ -78,14 +50,6 @@
       </div>
     </div>
     <!-- end pure grid group -->
-
-    <!-- Add a new section for your graph -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <h2>Airport Location Symbol Map</h2>
-        <div id="airportMap" class="vis-container"></div> <!-- New container -->
-      </div>
-    </div>
 
     <div class="pure-g">
       <div class="pure-u-1-1 small-font">
@@ -96,29 +60,14 @@
   </div> <!-- end page -->
 
   <script type="text/javascript">
-    var specVis1 = "./normalised-stacked-bars-responsive.json";
-    var specVis2 = "./line-chart-responsive.json";
-    var specAirportMap = "./js/airport_location_symbol_map.vg.json";  <!-- New graph path -->
+    var specAirportMap = "./js/airport_location_symbol_map.vg.json";  <!-- Graph path -->
 
-    vegaEmbed('#vis1', specVis1, { "actions": false });
-    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-
-    vegaEmbed('#vis3', specVis1, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-
-    vegaEmbed('#vis4', specVis2, { "actions": false }).then(function (result) {
-      // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-
-    // Add the new graph embedding for the airport map
+    // Embed the airport location symbol map
     vegaEmbed('#airportMap', specAirportMap, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
-
   </script>
+
 </body>
 
 </html>
