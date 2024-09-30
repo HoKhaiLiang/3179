@@ -101,8 +101,8 @@
             "orient": "right",
             "legendX": 20,  
             "legendY": 150,
-            "titleFontSize": 10,
-            "labelFontSize": 8,
+            "titleFontSize": 3,
+            "labelFontSize": 3,
             "offset": 10
           }
         },
