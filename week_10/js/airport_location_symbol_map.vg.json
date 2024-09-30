@@ -99,7 +99,10 @@
           },
           "legend": {
             "format": ".2s",
-            "orient": "right"  // Align the legend to the right
+            "orient": "right",
+            "titleFontSize": 12,
+            "labelFontSize": 10,
+            "offset": 10
           }
         },
         "color": {
@@ -113,7 +116,11 @@
           },
           "legend": {
             "format": ".2s",
-            "orient": "right"  // Align the legend to the right
+            "orient": "top",  // Set to horizontal orientation
+            "direction": "horizontal",
+            "titleFontSize": 12,
+            "labelFontSize": 10,
+            "offset": 20
           }
         },
         "tooltip": [
