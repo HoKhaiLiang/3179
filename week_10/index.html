@@ -27,12 +27,14 @@
   <div class="page">
     <!-- pure grid group -->
     <div class="pure-g">
+      <!-- Adjusted the grid layout to make the map span across two-thirds of the page (both columns combined) -->
       <div class="pure-u-2-3">
-        <div id="airportMap" class="vis-container"></div> <!-- Graph container on the left -->
+        <div id="airportMap" class="vis-container"></div> <!-- Graph container for the map -->
       </div>
       <div class="pure-u-1-3">
         <div class="description description-right">
           <h2>First and Second Columns Combined</h2>
+          <p>Map visualization of passenger and aircraft movements handled by airports in Malaysia for 2023. The map below provides insights based on the selected filters.</p>
         </div>
       </div>
     </div>
@@ -47,10 +49,10 @@
   </div> <!-- end page -->
 
   <script type="text/javascript">
-    var specAirportMap = "./js/airport_location_symbol_map.vg.json";  <!-- Graph path -->
+    var specAirportMap = "./js/airport_location_symbol_map.vg.json"; <!-- Graph path -->
 
     // Embed the airport location symbol map
-    vegaEmbed('#airportMap', specAirportMap, { "actions": false, "width": 400, "height": 200  }).then(function (result) {
+    vegaEmbed('#airportMap', specAirportMap, { "actions": false, "width": 700, "height": 500 }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
   </script>
