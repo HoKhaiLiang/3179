@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": "container",
-  "height": "350",
+  "height": 400,
   "title": "Passenger and Aircraft Movements Handled By Airports in Malaysia 2023",
   "projection": {"type": "mercator"},
   "params": [
@@ -97,7 +97,14 @@
             "range": [50, 150, 300, 700],
             "type": "threshold"
           },
-          "legend":{"orient": "right", "legendX":10, "legendY":5}
+          "legend": {
+            "orient": "right",
+            "legendX": 20,  
+            "legendY": 150,
+            "titleFontSize": 12,
+            "labelFontSize": 10,
+            "offset": 10
+          }
         },
         "color": {
           "field": "total_commercial_aircraft_movements_handled",
@@ -108,7 +115,14 @@
             "scheme": "reds",
             "type": "sqrt"
           },
-          "legend":{"orient": "right", "legendX":10, "legendY":5}
+          "legend": {
+            "orient": "right",
+            "legendX": 20, 
+            "legendY": 20,
+            "titleFontSize": 12,
+            "labelFontSize": 10,
+            "offset": 20
+          }
         },
         "tooltip": [
           {"field": "name", "type": "nominal", "title": "Airport Name"},
@@ -148,7 +162,7 @@
     "align": "left",
     "baseline": "middle",
     "dx": 5,
-    "fontSize": 6,
+    "fontSize": 8,
     "fontStyle": "italic"
   },
   "encoding": {
