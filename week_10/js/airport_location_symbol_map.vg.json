@@ -97,7 +97,12 @@
             "type": "threshold"
           },
           "legend": {
-            "orient": "right", 
+            "orient": "right",  
+            "titleFontSize": 10, 
+            "labelFontSize": 8,   
+            "direction": "horizontal", 
+            "legendX": 10,
+            "legendY": 10,
             "offset": 15
           }
         },
@@ -111,7 +116,12 @@
             "type": "sqrt"
           },
           "legend": {
-            "orient": "right", 
+            "orient": "right",  
+            "titleFontSize": 10, 
+            "labelFontSize": 8,   
+            "direction": "horizontal", 
+            "legendX": 10,
+            "legendY": 10,
             "offset": 15
           }
         },
