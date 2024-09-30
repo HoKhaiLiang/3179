@@ -99,9 +99,7 @@
           },
           "legend": {
             "format": ".2s",
-            "orient": "none",  
-            "legendX": 410,  
-            "legendY": 50    
+            "orient": "right"  // Align the legend to the right
           }
         },
         "color": {
@@ -115,9 +113,7 @@
           },
           "legend": {
             "format": ".2s",
-            "orient": "none",  
-            "legendX": 410,  
-            "legendY": 150    
+            "orient": "right"  // Align the legend to the right
           }
         },
         "tooltip": [
@@ -139,52 +135,51 @@
       }
     },
     {
-  "data": {
-    "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
-  },
-  "transform": [
-    {
-      "filter": "datum.total_passengers_handled > 0 && datum.total_commercial_aircraft_movements_handled > 0"
-    },
-    {
-      "filter": "Total_Passengers_Selection == null || (Total_Passengers_Selection == 'Less than 100k' && datum.total_passengers_handled < 100000) || (Total_Passengers_Selection == '100k - 1.0M' && datum.total_passengers_handled >= 100000 && datum.total_passengers_handled < 1000000) || (Total_Passengers_Selection == '1.0M - 10M' && datum.total_passengers_handled >= 1000000 && datum.total_passengers_handled < 10000000) || (Total_Passengers_Selection == '10M and above' && datum.total_passengers_handled >= 10000000)"
-    },
-    {
-      "filter": "datum.total_commercial_aircraft_movements_handled > Total_Flights_Above"
-    }
-  ],
-  "mark": {
-    "type": "text",
-    "align": "left",
-    "baseline": "middle",
-    "dx": 5,
-    "fontSize": 6,
-    "fontStyle": "italic"
-  },
-  "encoding": {
-    "longitude": {"field": "longitude", "type": "quantitative"},
-    "latitude": {"field": "latitude", "type": "quantitative"},
-    "text": {"field": "name", "type": "nominal"},
-    "color": {"value": "black"},
-    "tooltip": [
-      {"field": "name", "type": "nominal", "title": "Airport Name"},
-      {"field": "municipality", "type": "nominal", "title": "Municipality"},
-      {
-        "field": "total_passengers_handled",
-        "type": "quantitative",
-        "title": "Passengers Handled",
-        "format": ","
+      "data": {
+        "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
       },
-      {
-        "field": "total_commercial_aircraft_movements_handled",
-        "type": "quantitative",
-        "title": "Aircraft Movements Handled",
-        "format": ","
+      "transform": [
+        {
+          "filter": "datum.total_passengers_handled > 0 && datum.total_commercial_aircraft_movements_handled > 0"
+        },
+        {
+          "filter": "Total_Passengers_Selection == null || (Total_Passengers_Selection == 'Less than 100k' && datum.total_passengers_handled < 100000) || (Total_Passengers_Selection == '100k - 1.0M' && datum.total_passengers_handled >= 100000 && datum.total_passengers_handled < 1000000) || (Total_Passengers_Selection == '1.0M - 10M' && datum.total_passengers_handled >= 1000000 && datum.total_passengers_handled < 10000000) || (Total_Passengers_Selection == '10M and above' && datum.total_passengers_handled >= 10000000)"
+        },
+        {
+          "filter": "datum.total_commercial_aircraft_movements_handled > Total_Flights_Above"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 5,
+        "fontSize": 6,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "name", "type": "nominal"},
+        "color": {"value": "black"},
+        "tooltip": [
+          {"field": "name", "type": "nominal", "title": "Airport Name"},
+          {"field": "municipality", "type": "nominal", "title": "Municipality"},
+          {
+            "field": "total_passengers_handled",
+            "type": "quantitative",
+            "title": "Passengers Handled",
+            "format": ","
+          },
+          {
+            "field": "total_commercial_aircraft_movements_handled",
+            "type": "quantitative",
+            "title": "Aircraft Movements Handled",
+            "format": ","
+          }
+        ]
       }
-    ]
-  }
-}
-
+    }
   ],
   "config": {}
 }
