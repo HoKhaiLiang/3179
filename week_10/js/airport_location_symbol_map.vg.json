@@ -168,7 +168,7 @@
   "encoding": {
     "longitude": {"field": "longitude", "type": "quantitative"},
     "latitude": {"field": "latitude", "type": "quantitative"},
-    "text": {"field": "name", "type": "nominal"},
+    "text": {"field": "name", "type": "nominal", "format": ".replace('Airport', '')"},
     "color": {"value": "black"},
     "tooltip": [
       {"field": "name", "type": "nominal", "title": "Airport Name"},
