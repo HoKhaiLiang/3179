@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 450,
-  "title": "Domestic Passenger Traffic Movements Between Malaysian Airports in 2023",
+  "width": 600,
+  "height": 300,
+  "title": "Domestic Passenger Traffic Movements and Passengers Handled by Malaysian Airports in 2023",
   "projection": {"type": "mercator"},
   "layer": [
     {
@@ -10,7 +10,7 @@
         "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/js/graticules_5_malaysia_brunei.topojson",
         "format": {"type": "topojson", "feature": "ne_10m_ocean"}
       },
-      "mark": {"type": "geoshape", "fill": "#c8e1fa", "stroke": null}
+      "mark": {"type": "geoshape", "fill": "white", "stroke": null}
     },
     {
       "data": {
@@ -20,14 +20,14 @@
           "feature": "ne_10m_admin_1_states_provinces"
         }
       },
-      "mark": {"type": "geoshape", "fill": "#e6dcbe", "stroke": "#b9b9aa"}
+      "mark": {"type": "geoshape", "fill": "#d2d2d2", "stroke": "white"}
     },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/js/graticules_5_malaysia_brunei.topojson",
         "format": {"type": "topojson", "feature": "ne_110m_graticules_1"}
       },
-      "mark": {"type": "geoshape", "fill": null, "stroke": "#c3d2dc"}
+      "mark": {"type": "geoshape", "fill": null, "stroke": "#ced6de"}
     },
     {
       "data": {
@@ -89,16 +89,12 @@
           "legend": {"format": ".2s"}
         },
         "tooltip": [
-          {"field": "formatted_origin", "type": "nominal", "title": "Origin"},
-          {
-            "field": "formatted_destination",
-            "type": "nominal",
-            "title": "Destination"
-          },
+          {"field": "formatted_origin", "type": "nominal", "title": "Origin:"},
+          {"field": "formatted_destination", "type": "nominal", "title": "Destination:"},
           {
             "field": "count",
             "type": "quantitative",
-            "title": "Domestic Passenger Movement",
+            "title": "Domestic Passenger Movement:",
             "format": ","
           }
         ]
@@ -177,11 +173,45 @@
           {
             "field": "origin_airport_name",
             "type": "nominal",
-            "title": "Airport"
+            "title": "Airport:"
           },
-          {"field": "origin", "type": "nominal", "title": "Municipality"},
+          {"field": "origin", "type": "nominal", "title": "Municipality:"},
           {
             "field": "origin_passengers",
+            "type": "quantitative",
+            "title": "Domestic Passengers Handled:",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
+      },
+      "transform": [
+        {
+          "filter": "(datum.name == 'Kuala Lumpur International Airport' || datum.name == 'Penang International Airport' || datum.name == 'Langkawi International Airport' || datum.name == 'Kota Kinabalu International Airport' || datum.name == 'Kuching International Airport') && datum.domestic_passengers_handled > 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "top",
+        "dx": -15,
+        "dy": -3,
+        "fontSize": 8
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "name", "type": "nominal"},
+        "color": {"value": "black"},
+        "tooltip": [
+          {"field": "name", "type": "nominal", "title": "Airport Name"},
+          {"field": "municipality", "type": "nominal", "title": "Municipality"},
+          {
+            "field": "domestic_passengers_handled",
             "type": "quantitative",
             "title": "Domestic Passengers Handled",
             "format": ","
