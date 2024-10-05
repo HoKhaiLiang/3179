@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 600,
   "height": 400,
-  "title": "KLIA 1 and KLIA 2 Passenger Count by Year",
+  "title": "KLIA Passenger Count by Year",
   "data": {
     "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/KLIA_total_passengers_by_years.csv",
     "format": {"type": "csv"}
