@@ -151,10 +151,11 @@
       "mark": {
         "type": "text",
         "align": "right",
-        "baseline": "top",
+        "baseline": "middle",
         "dx": -15,
-        "dy": -3,
-        "fontSize": 8
+        "dy": 0,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
       },
       "encoding": {
         "longitude": {"field": "longitude", "type": "quantitative"},
