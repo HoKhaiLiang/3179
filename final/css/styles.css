@@ -1,42 +1,82 @@
-body *{
+body * {
     font-family: 'Open Sans', sans-serif;
 }
 
 h1 {
     font-weight: 900;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.3) 100%), 
+                url('https://raw.githubusercontent.com/HoKhaiLiang/3179/main/final/data/airport_pic.jpg') no-repeat center;
+    background-size: cover;
+    color: white;
+    font-size: 48px;
+    padding: 60px 0;
+    text-align: center;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Lighter shadow for better balance */
+    margin: 0;
 }
 
+h2 {
+    margin-top: 0px;
+    background-color: #4facf9; /* Light Blue background */
+    color: white; /* White font color */
+    font-size: 15px; /* Adjust the font size */
+    font-weight: bold;
+    padding: 10px 10px; /* Add padding for spacing inside the box */
+    text-align: center; /* Align the text to the left */
+    margin-bottom: 20px; /* Add space below the title */
+    border-radius: 5px; /* Optional: Add slight rounded corners */
+}
+
+h3 {
+    background-color: #1f77b4; /* Blue background */
+    color: white; /* White font color */
+    font-size: 28px; /* Adjust the font size */
+    font-weight: bold;
+    padding: 15px 20px; /* Add padding for spacing inside the box */
+    text-align: left; /* Align the text to the left */
+    margin-bottom: 20px; /* Add space below the title */
+}
+
+
+
+
 body {
-    background-color: white;
+    background-color: #657f8b; /* Set the blue background for the body */
 }
 
 .page {
     width: 850px;
-    background-color: white;
+    background-color: white; /* Keep the page content white */
     margin: auto;
     padding: 50px;
     padding-top: 35px;
+    border-radius: 15px; /* Add rounded corners for a smoother look */
 }
 
 .vis-container {
     width: 100%;
 }
 
-.description h2,
-h1 {
-    margin-top: 0px;
-}
 
 .description-right {
+    font-size: 13px;
+    padding-top: 10px;
     padding-left: 20px;
+    padding-right: 20px;
+    text-align: justify;
 }
 
 .description-left {
+    font-size: 13px;
+    padding-top: 10px;
     padding-right: 20px;
+    padding-left: 20px;
+    text-align: justify;
+
 }
 
 .pure-g {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .small-font {
