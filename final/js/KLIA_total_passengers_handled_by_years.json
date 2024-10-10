@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
-  "height": 400,
+  "width": 310,
+  "height": 200,
   "title": "KLIA Passenger Count by Year",
   "data": {
-    "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/KLIA_total_passengers_by_years.csv",
+    "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/final/data/KLIA_total_passengers_by_years.csv",
     "format": {"type": "csv"}
   },
   "transform": [
@@ -33,7 +33,7 @@
   "mark": {
     "type": "bar",
     "tooltip": {"content": "data"},
-    "size":50
+    "size":20
   },
   "encoding": {
     "x": {
@@ -52,7 +52,11 @@
       "field": "terminal",
       "type": "nominal",
       "title": "Terminal",
-      "scale": {"scheme": "category10"}
+      "scale": {"scheme": "category10"},
+      "legend": {
+        "orient": "top-right",
+        "offset": 8 
+      }
     },
     "opacity": {
       "condition": {
