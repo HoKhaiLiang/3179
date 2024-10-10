@@ -1,0 +1,225 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 300,
+  "title": "Domestic Passenger Traffic Movements and Passengers Handled by Malaysian Airports in 2023",
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/js/graticules_5_malaysia_brunei.topojson",
+        "format": {"type": "topojson", "feature": "ne_10m_ocean"}
+      },
+      "mark": {"type": "geoshape", "fill": "white", "stroke": null}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/js/graticules_5_malaysia_brunei.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_admin_1_states_provinces"
+        }
+      },
+      "mark": {"type": "geoshape", "fill": "#d2d2d2", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/js/graticules_5_malaysia_brunei.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_1"}
+      },
+      "mark": {"type": "geoshape", "fill": null, "stroke": "#ced6de"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Flight_Path.csv"
+      },
+      "mark": {"type": "line", "tooltip": {"content": "data"}},
+      "selection": {
+        "airportSelection": {
+          "type": "single",
+          "on": "click",
+          "fields": ["ori_lat", "ori_long"],
+          "empty": "none"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "origin",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
+            },
+            "key": "municipality",
+            "fields": ["name", "municipality"]
+          },
+          "as": ["origin_airport_name", "origin_municipality"]
+        },
+        {
+          "lookup": "destination",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
+            },
+            "key": "municipality",
+            "fields": ["name", "municipality"]
+          },
+          "as": ["destination_airport_name", "destination_municipality"]
+        },
+        {
+          "calculate": "datum.origin_airport_name + ' (' + datum.origin_municipality + ')'",
+          "as": "formatted_origin"
+        },
+        {
+          "calculate": "datum.destination_airport_name + ' (' + datum.destination_municipality + ')'",
+          "as": "formatted_destination"
+        },
+        {"filter": {"selection": "airportSelection"}}
+      ],
+      "encoding": {
+        "longitude": {"field": "ori_long", "type": "quantitative"},
+        "latitude": {"field": "ori_lat", "type": "quantitative"},
+        "longitude2": {"field": "destination_long", "type": "quantitative"},
+        "latitude2": {"field": "destination_lat", "type": "quantitative"},
+        "color": {"value": "red"},
+        "strokeWidth": {
+          "field": "count",
+          "type": "quantitative",
+          "title": "Domestic Passenger Movement",
+          "scale": {"domain": [500, 1370000], "range": [1, 8]},
+          "legend": {"format": ".2s"}
+        },
+        "tooltip": [
+          {"field": "formatted_origin", "type": "nominal", "title": "Origin:"},
+          {"field": "formatted_destination", "type": "nominal", "title": "Destination:"},
+          {
+            "field": "count",
+            "type": "quantitative",
+            "title": "Domestic Passenger Movement:",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Flight_Path.csv"
+      },
+      "transform": [
+        {
+          "lookup": "origin",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
+            },
+            "key": "municipality",
+            "fields": [
+              "name",
+              "latitude",
+              "longitude",
+              "domestic_passengers_handled"
+            ]
+          },
+          "as": [
+            "origin_airport_name",
+            "origin_lat",
+            "origin_long",
+            "origin_passengers"
+          ]
+        },
+        {
+          "lookup": "destination",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
+            },
+            "key": "municipality",
+            "fields": [
+              "name",
+              "latitude",
+              "longitude",
+              "domestic_passengers_handled"
+            ]
+          },
+          "as": [
+            "destination_airport_name",
+            "destination_lat",
+            "destination_long",
+            "destination_passengers"
+          ]
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "tooltip": true,
+        "color": "white",
+        "stroke": "black",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "longitude": {"field": "origin_long", "type": "quantitative"},
+        "latitude": {"field": "origin_lat", "type": "quantitative"},
+        "size": {
+          "field": "origin_passengers",
+          "type": "quantitative",
+          "title": "Domestic Passengers Handled",
+          "scale": {
+            "domain": [100000, 500000, 1000000, 3000000, 6000000, 10000000],
+            "range": [10, 30, 100, 200, 500, 800],
+            "type": "threshold"
+          },
+          "legend": {"format": ".2s"}
+        },
+        "tooltip": [
+          {
+            "field": "origin_airport_name",
+            "type": "nominal",
+            "title": "Airport:"
+          },
+          {"field": "origin", "type": "nominal", "title": "Municipality:"},
+          {
+            "field": "origin_passengers",
+            "type": "quantitative",
+            "title": "Domestic Passengers Handled:",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/week_10/data/Malaysia_Airports_Data.csv"
+      },
+      "transform": [
+        {
+          "filter": "(datum.name == 'Kuala Lumpur International Airport' || datum.name == 'Penang International Airport' || datum.name == 'Langkawi International Airport' || datum.name == 'Kota Kinabalu International Airport' || datum.name == 'Kuching International Airport') && datum.domestic_passengers_handled > 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -15,
+        "dy": 0,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "text": {"field": "name", "type": "nominal"},
+        "color": {"value": "black"},
+        "tooltip": [
+          {"field": "name", "type": "nominal", "title": "Airport Name"},
+          {"field": "municipality", "type": "nominal", "title": "Municipality"},
+          {
+            "field": "domestic_passengers_handled",
+            "type": "quantitative",
+            "title": "Domestic Passengers Handled",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
