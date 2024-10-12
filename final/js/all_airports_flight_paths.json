@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 400,
-  "height": 200,
+  "width": 650,
+  "height": 350,
+
   "title": {
     "text": [
       "Domestic Passenger Traffic Movements and",
@@ -9,6 +10,8 @@
     ],
     "anchor": "middle"
   },
+  "autosize": {"type": "pad", "contains": "padding"},
+  "padding": {"right": 100},
   "projection": {"type": "mercator"},
   "layer": [
     {
@@ -96,7 +99,7 @@
         "latitude": {"field": "ori_lat", "type": "quantitative"},
         "longitude2": {"field": "destination_long", "type": "quantitative"},
         "latitude2": {"field": "destination_lat", "type": "quantitative"},
-        "color": {"value": "#ff7f0e"},
+        "color": {"value": "red"},
         "strokeWidth": {
           "field": "count",
           "type": "quantitative",
@@ -104,8 +107,6 @@
           "scale": {"domain": [500, 1370000], "range": [1, 8]},
           "legend": {
             "orient": "bottom",
-            "labelFontSize": 9,
-            "titleFontSize": 9,
             "format": ".2s",
             "columns": 3,
             "direction": "vertical",
@@ -198,8 +199,6 @@
           },
           "legend": {
             "orient": "bottom",
-            "labelFontSize": 9,
-            "titleFontSize": 9,
             "format": ".2s",
             "columns": 3,
             "fillColor": "whitesmoke",
@@ -236,8 +235,8 @@
         "align": "right",
         "baseline": "middle",
         "dx": -10,
-        "dy": 1,
-        "fontSize": 10.5,
+        "dy": 2,
+        "fontSize": 10,
         "fontStyle": "italic"
       },
       "encoding": {
@@ -272,7 +271,7 @@
         "baseline": "middle",
         "dx": 10,
         "dy": 2,
-        "fontSize": 10.5,
+        "fontSize": 10,
         "fontStyle": "italic"
       },
       "encoding": {
