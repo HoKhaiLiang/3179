@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 280,
-  "height": 200,
+  "width": 290,
+  "height": 240,
   "title": "KLIA Passenger Breakdown in 2023",
   "data": {
     "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/final/data/KLIA_Passengers_Handled_Breakdown_2023.csv",
@@ -22,69 +22,82 @@
       "as": "mirror_passengers"
     }
   ],
-  "selection": {
-    "terminal_highlight": {
-      "type": "multi",
-      "fields": ["airport"],
-      "bind": "legend"
-    },
-    "category_highlight": {
-      "type": "multi",
-      "fields": ["category"]
-    }
-  },
-  "mark": {
-    "type": "bar",
-    "tooltip": true,
-    "size":30
-  },
-  "encoding": {
-    "y": {
-      "field": "category",
-      "type": "nominal",
-      "title": "Passenger Category",
-      "sort": ["International Arrival", "International Departure", "Domestic Arrival", "Domestic Departure"]
-    },
-    "x": {
-      "field": "mirror_passengers",
-      "type": "quantitative",
-      "title": "Passengers Handled",
-      "axis": {
-        "title": "Passengers Handled",
-        "labelExpr": "substring(format(abs(datum.value), '.2s'))"
-      }
-    },
-    "color": {
-      "field": "airport",
-      "type": "nominal",
-      "title": "Terminal",
-      "scale": {"scheme": "category10"},
-      "legend": {
-        "orient": "bottom-left",
-        "offset": 8 
-      }
-    },
-    "opacity": {
-      "condition": {
-        "test": {
-          "and": [
-            {"selection": "terminal_highlight"},
-            {"selection": "category_highlight"}
+  "layer": [
+    {
+      "mark": {"type": "bar", "tooltip": true, "size": 30},
+      "encoding": {
+        "y": {
+          "field": "category",
+          "type": "nominal",
+          "title": "Passenger Category",
+          "sort": [
+            "International Arrival",
+            "International Departure",
+            "Domestic Arrival",
+            "Domestic Departure"
           ]
         },
-        "value": 1
-      },
-      "value": 0.2
-    },
-    "tooltip": [
-      {"field": "airport", "type": "nominal", "title": "Terminal:"},
-      {"field": "category", "type": "nominal", "title": "Category:"},
-      {
-        "field": "passengers",
-        "type": "quantitative",
-        "title": "Passengers Handled:",
-        "format": ","
+        "x": {
+          "field": "mirror_passengers",
+          "type": "quantitative",
+          "title": "Passengers Handled",
+          "axis": {
+            "title": "Passengers Handled",
+            "labelExpr": "substring(format(abs(datum.value), '.2s'))"
+          }
+        },
+        "color": {
+          "field": "airport",
+          "type": "nominal",
+          "title": "Terminal",
+          "scale": {"scheme": "category10"},
+          "legend": {"orient": "bottom-left", "offset": 8}
+        },
+        "tooltip": [
+          {"field": "airport", "type": "nominal", "title": "Terminal:"},
+          {"field": "category", "type": "nominal", "title": "Category:"},
+          {
+            "field": "passengers",
+            "type": "quantitative",
+            "title": "Passengers Handled:",
+            "format": ","
+          }
+        ]
       }
-    ]
-  }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 9,
+        "fontStyle": "italic",
+        "color": "gray",
+        "dx": 0,
+        "dy": 30
+      },
+      "encoding": {
+        "y": {"datum": "International Arrival"},
+        "x": {"datum": 0},
+        "text": {"value": "Terminal 1 handles more International passengers"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 9,
+        "fontStyle": "italic",
+        "color": "gray",
+        "dx": 0,
+        "dy": 30
+      },
+      "encoding": {
+        "y": {"datum": "Domestic Arrival"},
+        "x": {"datum": 0},
+        "text": {"value": "Terminal 2 leads in Domestic passengers"}
+      }
+    }
+  ]
 }
