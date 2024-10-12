@@ -1,8 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 600,
-  "height": 250,
+  "width": 650,
+  "height": 350,
   "title": "Passenger and Aircraft Movements Handled By Malaysia Airports 2023",
+  "autosize": {"type": "pad", "contains": "padding"},
+  "padding": {"right": 100},
   "projection": {"type": "mercator"},
   "params": [
     {
@@ -103,13 +105,10 @@
           },
           "legend": {
             "orient": "bottom",
-            "labelFontSize": 9,
-            "titleFontSize": 9,
             "format": ".2s",
             "direction": "horizontal",
-            "offset":-15,
-            "fillColor":"whitesmoke"
-
+            "offset": -15,
+            "fillColor": "whitesmoke"
           }
         },
         "color": {
@@ -117,7 +116,7 @@
           "type": "quantitative",
           "title": "Aircraft Movements Handled",
           "scale": {
-            "domain": [500, 320000],
+            "domain": [500, 319054],
             "scheme": "yelloworangered",
             "type": "sqrt"
           },
@@ -125,12 +124,11 @@
             "orient": "bottom",
             "labelPadding": 10,
             "gradientThickness": 8,
-            "labelFontSize": 9,
-            "titleFontSize": 9,
             "direction": "horizontal",
             "format": ".2s",
-            "offset":-15,
-            "fillColor":"whitesmoke"
+            "offset": -15,
+            "fillColor": "whitesmoke",
+             "values": [500, 100000, 200000, 319054]
           }
         },
         "tooltip": [
@@ -168,9 +166,9 @@
         "type": "text",
         "align": "right",
         "baseline": "middle",
-        "dx": -13,
+        "dx": -10,
         "dy": 2,
-        "fontSize": 11.5,
+        "fontSize": 10,
         "fontStyle": "italic"
       },
       "encoding": {
@@ -209,9 +207,9 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
-        "dx": 13,
+        "dx": 10,
         "dy": 2,
-        "fontSize": 11.5,
+        "fontSize": 10,
         "fontStyle": "italic"
       },
       "encoding": {
