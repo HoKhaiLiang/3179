@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 310,
-  "height": 200,
-  "title": "KLIA Passenger Count by Year",
+  "width": 330,
+  "height": 240,
+  "title": "KLIA Total Passenger Handled by Year",
   "data": {
     "url": "https://raw.githubusercontent.com/HoKhaiLiang/3179/main/final/data/KLIA_total_passengers_by_years.csv",
     "format": {"type": "csv"}
@@ -10,75 +10,155 @@
   "transform": [
     {
       "aggregate": [
-        {
-          "op": "sum",
-          "field": "passengers",
-          "as": "Total_Passengers"
-        }
+        {"op": "sum", "field": "passengers", "as": "Total_Passengers"}
       ],
       "groupby": ["year", "terminal"]
     }
   ],
-  "selection": {
-    "terminal_highlight": {
-      "type": "multi",
-      "fields": ["terminal"],
-      "bind": "legend"
+  "layer": [
+    {
+      "mark": {"type": "bar", "tooltip": {"content": "data"}, "size": 20},
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {"labelAngle": 0}
+        },
+        "y": {
+          "field": "Total_Passengers",
+          "type": "quantitative",
+          "title": "Total Passengers Handled",
+          "axis": {"title": "Total Passengers Handled", "format": ".3~s"}
+        },
+        "color": {
+          "field": "terminal",
+          "type": "nominal",
+          "title": "Terminal",
+          "scale": {"scheme": "category10"},
+          "legend": {"orient": "top-right", "offset": 8}
+        },
+        "tooltip": [
+          {"field": "terminal", "type": "nominal", "title": "Terminal:"},
+          {"field": "year", "type": "ordinal", "title": "Year:"},
+          {
+            "field": "Total_Passengers",
+            "type": "quantitative",
+            "title": "Passengers Handled:",
+            "format": ","
+          }
+        ]
+      }
     },
-    "year_highlight": {
-      "type": "multi",
-      "fields": ["year"]
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "fontSize": 10
+      },
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "Total_Passengers",
+              "as": "Total_Yearly_Passengers"
+            }
+          ],
+          "groupby": ["year"]
+        }
+      ],
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {
+          "field": "Total_Yearly_Passengers",
+          "type": "quantitative",
+          "aggregate": "sum",
+          "stack": null
+        },
+        "text": {
+          "field": "Total_Yearly_Passengers",
+          "type": "quantitative",
+          "format": ",.2s"
+        }
+      }
+    },
+    {
+    "mark": {
+      "type": "text",
+      "align": "center",
+      "baseline": "top",
+      "color": "gray",
+      "fontWeight": 100,
+      "fontSize": 9,
+      "fontStyle": "italic",
+      "angle": -0, 
+      "dx": -5, 
+      "dy": -3 
+    },
+    "encoding": {
+      "x": {"datum": "2022", "type": "ordinal"},
+      "y": {"datum": 34000000},
+      "text": {"value": "Post-COVID"}
     }
   },
-  "mark": {
-    "type": "bar",
-    "tooltip": {"content": "data"},
-    "size":20
+    {
+    "mark": {
+      "type": "text",
+      "align": "center",
+      "baseline": "top",
+      "color": "gray",
+      "fontWeight": 100,
+      "fontSize": 9,
+      "fontStyle": "italic",
+      "angle": -0, 
+      "dx": -5, 
+      "dy": 6
+    },
+    "encoding": {
+      "x": {"datum": "2022", "type": "ordinal"},
+      "y": {"datum": 34000000},
+      "text": {"value": "Recovery"}
+    }
   },
-  "encoding": {
-    "x": {
-      "field": "year",
-      "type": "ordinal",
-      "title": "Year",
-      "axis": {"labelAngle": 0}
+  {
+    "mark": {
+      "type": "text",
+      "align": "center",
+      "baseline": "top",
+      "color": "gray",
+      "fontWeight": 100,
+      "fontSize": 9,
+      "fontStyle": "italic",
+      "angle": -0, 
+      "dx": 3, 
+      "dy": -3 
     },
-    "y": {
-      "field": "Total_Passengers",
-      "type": "quantitative",
-      "title": "Total Passengers Handled",
-      "axis": {"title": "Total Passengers Handled", "format": ".3~s"}
+    "encoding": {
+      "x": {"datum": "2020", "type": "ordinal"},
+      "y": {"datum": 21000000},
+      "text": {"value": "COVID"}
+    }
+  },
+    {
+    "mark": {
+      "type": "text",
+      "align": "center",
+      "baseline": "top",
+      "color": "gray",
+      "fontWeight": 100,
+      "fontSize": 9,
+      "fontStyle": "italic",
+      "angle": -0, 
+      "dx": 3, 
+      "dy": 6
     },
-    "color": {
-      "field": "terminal",
-      "type": "nominal",
-      "title": "Terminal",
-      "scale": {"scheme": "category10"},
-      "legend": {
-        "orient": "top-right",
-        "offset": 8 
-      }
-    },
-    "opacity": {
-      "condition": {
-        "test": {
-          "and": [
-            {"selection": "terminal_highlight"},
-            {"selection": "year_highlight"}
-          ]
-        },
-        "value": 1
-      },
-      "value": 0.2
-    },
-    "tooltip": [
-      {"field": "terminal", "type": "nominal", "title": "Terminal:"},
-      {"field": "year", "type": "ordinal", "title": "Year:"},
-      {
-        "field": "Total_Passengers",
-        "type": "quantitative",
-        "title": "Passengers Handled:",
-        "format": ","
-      }
-    ]
+    "encoding": {
+      "x": {"datum": "2020", "type": "ordinal"},
+      "y": {"datum": 21000000},
+      "text": {"value": "Breakout"}
+    }
   }
+  ]
 }
