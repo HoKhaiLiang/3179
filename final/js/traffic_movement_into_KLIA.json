@@ -36,7 +36,7 @@
       "mark": {
         "type": "line",
         "tooltip": {"content": "data"},
-        "color":"#1f77b4"
+        "color":"#4facf9"
       },
       "transform": [
         {
@@ -104,8 +104,8 @@
       "mark": {
         "type": "circle",
         "tooltip": true,
-        "color": "blue",
-        "stroke": "blue",
+        "color": "#2e88d1",
+        "stroke": "#2e88d1",
         "strokeWidth": 0.5,
         "size": 20
       },
